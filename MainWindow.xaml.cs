@@ -62,8 +62,10 @@ namespace windowsProject
 
             if (messages == string.Empty) { chatMessage.Text = string.Empty; }
             //messages = StartClient(msgSend.Text + "<EOF>") + Environment.NewLine;
-            chatMessage.Text += messages;
+            //chatMessage.Text += messages;
+            entryDb(msgSend.Text);
             msgSend.Text = string.Empty;
+           
         }
 
 
@@ -108,17 +110,13 @@ namespace windowsProject
             try
             {
                 connection.Open();
-                // Creating query string
                 string sql = "SELECT * FROM windowsProject";
-                // New command object
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
-                // New reader object
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 messages = string.Empty;
-                // While reader has rows
                 while (rdr.Read())
                 {
-                    items.Add(new userEntry() { id = rdr.GetString(0), name = rdr.GetString(1), message = rdr.GetString(2), timeStamp = rdr.GetString(3), ip = rdr.GetString(4) });
+                    items.Add(new userEntry() { name = rdr.GetString(1), message = rdr.GetString(2), timeStamp = rdr.GetString(3), ip = rdr.GetString(4) });
                 }
                 rdr.Close();
 
@@ -133,11 +131,31 @@ namespace windowsProject
             }
         }
 
+        private void entryDb(String message)
+        {
+            
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(connectionString);
+                string sql = "INSERT INTO windowsProject (name, message, timeStamp, ip)  VALUES ('" + username + "','" + message + "','" + "day" + "','" + "localHost" +"');";
+                MySqlCommand cmd;
+                connection.Open();
+                cmd = new (sql, connection);          
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                rdr.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error connecting to database" + e);
+            }
+        }
+
         //classes
 
         public class userEntry
         {
-            public string? id { get; set; }
+            //public string? id { get; set; }
             public string? name { get; set; }
             public string? message { get; set; }
             public string? timeStamp { get; set; }
