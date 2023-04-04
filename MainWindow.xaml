@@ -23,8 +23,8 @@
 
         <Border CornerRadius="0" Grid.RowSpan="2" Panel.ZIndex="2" Background="Purple" Grid.ColumnSpan="2">
             <Grid>
-                <TextBlock Text="windows programming CHAT" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" 
-                       FontWeight="SemiBold" Margin="13,160,0,0" Width="386">
+                <TextBlock Text="WINDOWS PROGRAMMING CHAT" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                       FontWeight="SemiBold" Margin="13,186,0,0" Width="386">
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="270"></RotateTransform>
                     </TextBlock.LayoutTransform>
@@ -34,13 +34,13 @@
 
         <Border CornerRadius="0 20 20 0 " Background="white" Grid.Column="2" Grid.RowSpan="2">
             <Grid x:Name="btn">
-                <Button x:Name="sendBtn" Content="Send" HorizontalAlignment="Left" Margin="968,776,0,0" VerticalAlignment="Top" Click="Button_Click" Height="46" Width="121" IsEnabled="false" />
+                <Button x:Name="sendBtn" Content="Send" HorizontalAlignment="Left" Margin="968,776,0,0" VerticalAlignment="Top" Click="Button_Click" Height="46" Width="121" IsEnabled="false" FontSize="18" />
                 <TextBox x:Name="msgSend" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="106,773,20,0" TextWrapping="Wrap" 
                          Text="Write a text" VerticalAlignment="Top" Width="826" TextChanged="TextBox_TextChanged" Height="52" FontSize="20" MaxLength="1023" IsEnabled="False" />
 
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="3.2" Margin="102,72,106,174" ></Border>
                 <TextBlock x:Name="chatMessage" TextWrapping="Wrap" Text="chat history" Margin="142,87,145,189" FontSize="20"/>
-                <Button x:Name="connectbtn" Content="Connect" HorizontalAlignment="Left" Margin="968,21,0,0" VerticalAlignment="Top" Height="46" Width="121" Click="connectbtn_Click" FontSize="20" />
+                <Button x:Name="connectbtn" Content="Connect" HorizontalAlignment="Left" Margin="968,21,0,0" VerticalAlignment="Top" Height="46" Width="121" Click="connectbtn_Click" FontSize="18" />
                 <Label x:Name="label" Height="46" Content="disconnected" Margin="828,30,232,824" FontSize="16"/>
                 <TextBox x:Name="userName" HorizontalAlignment="Left" Margin="102,30,0,0" TextWrapping="Wrap" Text="Add User Name" VerticalAlignment="Top" Width="195" Height="36" FontSize="20"/>
             </Grid>

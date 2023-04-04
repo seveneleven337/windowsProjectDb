@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;  //Trace.WriteLine(path);
 using System.IO;
+using System.Net.Sockets;
+using System.Net;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -101,6 +103,19 @@ namespace windowsProject
             }
         }
 
+        public static string getLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
         //function related to database
 
         private void ReadDb()
@@ -137,7 +152,7 @@ namespace windowsProject
             try
             {
                 MySqlConnection connection = new MySqlConnection(connectionString);
-                string sql = "INSERT INTO windowsProject (name, message, timeStamp, ip)  VALUES ('" + username + "','" + message + "','" + "day" + "','" + "localHost" +"');";
+                string sql = "INSERT INTO windowsProject (name, message, timeStamp, ip)  VALUES ('" + username + "','" + message + "','" + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "','" + getLocalIPAddress() + "');";
                 MySqlCommand cmd;
                 connection.Open();
                 cmd = new (sql, connection);          
